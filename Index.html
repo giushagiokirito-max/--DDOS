@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ᲘᲧᲘᲓᲔ-DDOS</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* ავტორიზაციის ფორმა */
+    .login-box {
+      background: #111;
+      border: 2px solid #00ff00;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .login-box h1 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      background: #000;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      font-family: inherit;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #00ff00;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #00cc00;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    /* ტერმინალის ეკრანი (კოდის ჩამოსაშლელად) */
+    #terminal-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      padding: 20px;
+      overflow: hidden;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    #console-output {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #00ff00;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* საბოლოო გამაფრთხილებელი ეკრანი */
+    #warning-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #050000;
+      color: #ff0000;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .moving-banner {
+      width: 100%;
+      background: #ff0000;
+      color: #000;
+      font-weight: bold;
+      padding: 12px 0;
+      font-size: 20px;
+      letter-spacing: 2px;
+      animation: flash 0.8s infinite alternate;
+    }
+
+    @keyframes flash {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    .warning-body {
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .warning-text {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.6;
+      text-shadow: 0 0 12px #ff0000;
+      margin: 20px 0;
+    }
+
+    .warning-icons {
+      font-size: 45px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- შესასვლელი ფორმა -->
+  <div class="login-box" id="loginBox">
+    <h1>ᲘᲧᲘᲓᲔ-DDOS</h1>
+    <input type="password" class="input-field" placeholder="შეიყვანეთ პაროლი...">
+    <button class="btn" onclick="executeEffect()">მაღაზია ღიაა</button>
+  </div>
+
+  <!-- ტერმინალი -->
+  <div id="terminal-screen">
+    <div id="console-output"></div>
+  </div>
+
+  <!-- საშიში შეტყობინება -->
+  <div id="warning-screen">
+    <div class="moving-banner">⚠️ SYSTEM OVERRIDE / WARNING ⚠️</div>
+    
+    <div class="warning-body">
+      <div class="warning-icons">⚠️⚠️⚠️⚠️⚠️</div>
+      <div class="warning-text">
+        შენი IP ინფორმაცია უკვე ჩემს ხელშია. შენი გადასაწყვეტია ლეგალურად იყიდი თუ დავიწყო შენი როუტერის გადაწვა
+      </div>
+      <div class="warning-icons">⚠️⚠️⚠️⚠️⚠️</div>
+    </div>
+
+    <div class="moving-banner">⚠️ SYSTEM OVERRIDE / WARNING ⚠️</div>
+  </div>
+
+  <script>
+    function executeEffect() {
+      // ფორმის დამალვა და ტერმინალის გამოჩენა
+      document.getElementById('loginBox').style.display = 'none';
+      const terminal = document.getElementById('terminal-screen');
+      const output = document.getElementById('console-output');
+      terminal.style.display = 'flex';
+
+      const logTemplates = [
+        "EXPLOIT_MODULE_LOADED [PORT: 8080]",
+        "BYPASSING ROUTER FIREWALL...",
+        "INJECTING PACKETS -> ",
+        "FETCHING NETWORK CONFIGURATION...",
+        "LOCAL_IP_TRACED: 192.168.1.",
+        "DUMPING SYSTEM MEMORY...",
+        "OVERRIDING SECURITY PROTOCOLS..."
+      ];
+
+      const hexChars = "0123456789ABCDEF";
+
+      // კოდების ჩამოყრის ანიმაცია
+      const interval = setInterval(() => {
+        let randomHex = "";
+        for (let i = 0; i < 32; i++) {
+          randomHex += hexChars.charAt(Math.floor(Math.random() * hexChars.length));
+        }
+
+        let randomLog = logTemplates[Math.floor(Math.random() * logTemplates.length)];
+        output.innerText += `${randomLog}${randomHex}\n`;
+
+        // ეკრანის ავტომატური ჩამოწევა ბოლომდე
+        terminal.scrollTop = terminal.scrollHeight;
+      }, 30);
+
+      // 10 წამში გადასვლა გაფრთხილების ეკრანზე
+      setTimeout(() => {
+        clearInterval(interval);
+        terminal.style.display = 'none';
+        document.getElementById('warning-screen').style.display = 'flex';
+      }, 10000);
+    }
+  </script>
+
+</body>
+</html>
